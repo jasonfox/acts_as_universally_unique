@@ -1,0 +1,34 @@
+ActsAsUniversallyUnique
+=======================
+
+This plugin adds a UUID field to the models that acts_as_universally_unique. 
+This plugin relies on the UUID gem: http://github.com/assaf/uuid/tree/master. 
+You can read more about UUIDs here: http://en.wikipedia.org/wiki/Uuid.
+
+Please note that the UUID gem maintains a state file which is created in 
+/var/tmp/ruby-uuid or the Windows common application data directory using mode 
+0644. If that directory is not writable, the file is created as .ruby-uuid in 
+the home directory. State files are not portable across machines. For more
+information see: http://github.com/assaf/uuid/tree/master.
+
+Options
+=======
+column      The database column to store the UUID value in.
+format      One of the following (the default is :compact): 
+                :compact  => '%08x%04x%04x%04x%012x', 
+                :expanded => '%08x-%04x-%04x-%04x-%012x', 
+                :urn      => 'urn:uuid:%08x-%04x-%04x-%04x-%012x'
+
+Example
+=======
+
+class Customer
+  acts_as_universally_unique :column => :access_key
+end
+
+$ script/console
+>> c = Customer.create!
+>> c.access_key
+=> ab57bba0e968012bf7e6002332b9705e
+
+Copyright (c) 2009 Jason Fox, www.jasonfox.com, Released under the MIT license
