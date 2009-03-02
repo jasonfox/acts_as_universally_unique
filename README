@@ -22,7 +22,7 @@ format      One of the following (the default is :compact):
 Example
 =======
 
-class Customer
+class Customer < ActiveRecord::Base
   acts_as_universally_unique :column => :access_key
 end
 
